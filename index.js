@@ -11,7 +11,7 @@ function computeEvalUrl(req){
 	// test 'evalurl'-endpoint with response containing a redirect
 	var fakeRedirectQuery = !!req.query && req.query.redirect ?  '&redirect=' + req.query.redirect : ''; // e.g. &redirect=/fleet
 
-	console.log("\tNODE-app.js -> getEvalURL(path=%s, fakeRiotUrl=%s, redirectQuery=%s)", req.path, fakeRiotURL, fakeRedirectQuery);
+	console.log("\tyt-evaluate-url/index.js -> computeEvalUrl(path=%s, fakeRiotUrl=%s, redirectQuery=%s)", req.path, fakeRiotURL, fakeRedirectQuery);
 	return fakeRiotURL + "/evalurl/?url=" + req.path + fakeRedirectQuery;
 
 }
@@ -27,16 +27,16 @@ function computeEvalUrl(req){
 function evaluateUrl(targetURL){
 
 	return new Promise(function(resolve, reject) {
-		console.log("\tNODE-app.js -> evaluateUrl: ", targetURL);
+		console.log("\tyt-evaluate-url/index.js -> evaluateUrl: ", targetURL);
 		request(targetURL, function (error, response, body) {
 
 			var result = {};
 
 			// handle error with backend-request
 			if (error) {
-				console.log('Server-ERROR: \tNODE-app.js -> evaluateUrl()',error);
+				console.log('Server-ERROR: \tyt-evaluate-url/index.js -> evaluateUrl()',error);
 				result.status = 500;
-				result.message = 'Server-ERROR: \tNODE-app.js -> evaluateUrl()' + error.toString();
+				result.message = 'Server-ERROR: \tyt-evaluate-url/index.js -> evaluateUrl()' + error.toString();
 				resolve(result);
 			} else {
 				if (response) {
@@ -53,11 +53,11 @@ function evaluateUrl(targetURL){
 							result.message = data.message;
 						}
 					} catch (e) {
-						console.log('Server-ERROR: \tNODE-app.js -> evaluateUrl(): cannot parse response.body as json.',e);
+						console.log('Server-ERROR: \tyt-evaluate-url/index.js -> evaluateUrl(): cannot parse response.body as json.',e);
 					}
 					resolve(result);
 				} else {
-					resolve( { status: 500,  message: "Server-ERROR - 500: \tNODE-app.js -> evaluateUrl(): no response."} );
+					resolve( { status: 500,  message: "Server-ERROR - 500: \tyt-evaluate-url/index.js -> evaluateUrl(): no response."} );
 				}
 			}
 		});
