@@ -6,6 +6,7 @@ var Promise = require('es6-promise').Promise;
 // -> possible return-value: //localhost:8000/evalurl?url=/fleet&redirect=/destinations
 // redirect-query is only used in the fake-api to easily test redirects
 function computeEvalUrl(req){
+
 	var fakeRiotURL = "http://" + req.headers.host; // e.g. //localhost:8000
 	// test 'evalurl'-endpoint with response containing a redirect
 	var fakeRedirectQuery = !!req.query && req.query.redirect ?  '&redirect=' + req.query.redirect : ''; // e.g. &redirect=/fleet
@@ -64,7 +65,10 @@ function evaluateUrl(targetURL){
 }
 
 module.exports = {
-	get: function (req) {
-		return evaluateUrl(computeEvalUrl(req));
+
+	computeEvalUrl: computeEvalUrl,
+
+	get: function (url) {
+		return evaluateUrl(url);
 	}
 };
