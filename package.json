@@ -1,0 +1,23 @@
+{
+  "name": "yt-evaluate-url",
+  "version": "1.0.0",
+  "description": "Evaluates an url and returns an object containing statusCode and optinally a Redirect url",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Krachmueller/yt-evaluate-url.git"
+  },
+  "author": "daniel.grehn@yourstruly.de",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Krachmueller/yt-evaluate-url/issues"
+  },
+  "homepage": "https://github.com/Krachmueller/yt-evaluate-url",
+  "dependencies": {
+    "es6-promise": "^4.2.4",
+    "request": "^2.83.0"
+  }
+}
