@@ -40,6 +40,7 @@ function evaluateUrl(targetURL){
 				resolve(result);
 			} else {
 				if (response) {
+					console.log('\tyt-evaluate-url/index.js -> response=', response);
 					// save status code of response
 					if (!!response.statusCode) {
 						result.status = response.statusCode;
