@@ -40,7 +40,7 @@ function evaluateUrl(targetURL){
 				resolve(result);
 			} else {
 				if (response) {
-					console.log('\tyt-evaluate-url/index.js -> response=', response);
+					console.log('\tyt-evaluate-url/index.js -> response.body=', response.body);
 					// save status code of response
 					if (!!response.statusCode) {
 						result.status = response.statusCode;
@@ -53,8 +53,11 @@ function evaluateUrl(targetURL){
 						if (!!data.message) {
 							result.message = data.message;
 						}
-					} catch (e) {
-						console.log('Server-ERROR: \tyt-evaluate-url/index.js -> evaluateUrl(): cannot parse response.body as json.',e);
+					} catch (err) {
+						console.log('Server-ERROR: \tyt-evaluate-url/index.js -> evaluateUrl(): cannot parse response.body as json.', err);
+						result.status = 500;
+						result.message = 'Server-ERROR: \tyt-evaluate-url/index.js -> cannot parse response.body as json.' + error.toString();
+						resolve(result);
 					}
 					resolve(result);
 				} else {
