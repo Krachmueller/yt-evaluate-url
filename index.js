@@ -56,6 +56,7 @@ function evaluateUrl(targetURL){
 					} catch (error) {
 						console.log('Server-ERROR: \tyt-evaluate-url/index.js -> evaluateUrl(): cannot parse response.body as json.', error);
 						result.status = 500;
+						result.redirect = '/newsletter/fehlermeldung?type=default';
 						result.message = 'Server-ERROR: \tyt-evaluate-url/index.js -> cannot parse response.body as json.' + error.toString();
 						resolve(result);
 					}
