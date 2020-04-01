@@ -28,7 +28,7 @@ function evaluateUrl(targetURL){
 
 	return new Promise(function(resolve, reject) {
 		console.log("\tyt-evaluate-url/index.js -> evaluateUrl: ", targetURL);
-		request(targetURL, {timeout: 1500}, function (error, response, body) {
+		request(targetURL, {timeout: 5000}, function (error, response, body) {
 
 			var result = {};
 
