@@ -46,12 +46,14 @@ function evaluateUrl(targetURL){
 						result.status = response.statusCode;
 					}
 					try {
-						var data = JSON.parse(response.body);
-						if(!!data.redirect) {
-							result.redirect = data.redirect;
-						}
-						if (!!data.message) {
-							result.message = data.message;
+						if (result.status !== 200) {
+							var data = JSON.parse(response.body);
+							if(!!data.redirect) {
+								result.redirect = data.redirect;
+							}
+							if (!!data.message) {
+								result.message = data.message;
+							}
 						}
 					} catch (error) {
 						console.log('Server-ERROR: \tyt-evaluate-url/index.js -> evaluateUrl(): cannot parse response.body as json.', error);
